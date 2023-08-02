@@ -1,11 +1,19 @@
+/// PhoneNumber is a sealed class representing different outcomes of phone number operations.
+///
+/// Subclasses:
+///   - Success: Represents successful operations with a `phoneNumber` property.
+///   - Failure: Represents failures with an `errorMessage` property.
+///   - ClosedByUser: Represents canceled operations.
 sealed class PhoneNumber {}
 
+/// returns the "phoneNumber"
 class Success implements PhoneNumber {
   final String phoneNumber;
 
   Success({required this.phoneNumber});
 }
 
+/// returns the "errorMessage"
 class Failure implements PhoneNumber {
   final String errorMessage;
 
