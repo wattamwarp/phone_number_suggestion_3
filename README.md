@@ -71,3 +71,6 @@ Contributions to the Phone Number Suggestion Plugin are welcome! If you find a b
 
 # License
 This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Buy Me a Coffee
+<a href="https://github.com/wattamwarp" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
