@@ -1,36 +1,32 @@
-enum PhoneNumberSuggestionType {
-  none,
-  phoneNumberSelected,
-  closedByUser,
-  errorOccurred,
+sealed class PhoneNumber {}
+
+class Success implements PhoneNumber {
+  final String phoneNumber;
+
+  Success({required this.phoneNumber});
 }
 
-class PhoneNumberSuggestionResponse {
-  PhoneNumberSuggestionType type;
-  String data;
+class Failure implements PhoneNumber {
+  final String errorMessage;
 
-  PhoneNumberSuggestionResponse({
-    this.type = PhoneNumberSuggestionType.none,
-    this.data = '',
-  });
+  Failure({required this.errorMessage});
+}
 
-  factory PhoneNumberSuggestionResponse.fromJson(Map<dynamic, dynamic> map) {
-    final statusCode = map['statusCode'] ?? 404;
-    final data = map['data'] ?? '';
+class ClosedByUser implements PhoneNumber {}
 
-    switch(statusCode){
-      case 200:   return PhoneNumberSuggestionResponse(
-        type: PhoneNumberSuggestionType.phoneNumberSelected,
-        data: data,
-      );
-      case 204:
-        return PhoneNumberSuggestionResponse(
-            type: PhoneNumberSuggestionType.closedByUser, data: data);
-      default:
-        return PhoneNumberSuggestionResponse(
-          type: PhoneNumberSuggestionType.errorOccurred,
-          data: data,
-        );
-    }
+/// this is not required for bottom-sheet
+class NoneOfTheSelected implements PhoneNumber {}
+
+PhoneNumber fromJson({required Map<dynamic, dynamic> map}) {
+  final statusCode = map['statusCode'] ?? 404;
+  final data = map['data'] ?? '';
+
+  switch (statusCode) {
+    case 200:
+      return Success(phoneNumber: data);
+    case 204:
+      return ClosedByUser();
+    default:
+      return Failure(errorMessage: data);
   }
 }
