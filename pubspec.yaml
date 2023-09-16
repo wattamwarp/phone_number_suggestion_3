@@ -1,5 +1,5 @@
 name: phone_number_suggestion_3
-description: A new Flutter project.
+description: The flutter_google_phone_number_suggestion package is a powerful Flutter plugin that seamlessly integrates with the Google API to offer phone number suggestions directly from a user's device. It simplifies the process of selecting phone numbers, streamlining your Flutter app's user experience.
 version: 0.0.1
 homepage:
 
